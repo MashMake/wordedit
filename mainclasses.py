@@ -1,3 +1,4 @@
+from inspect import Parameter
 import math
 
 def closer2(value1, value2, parameter):
@@ -248,6 +249,55 @@ class Assembly5(object):
                         temp00 = [[0.054, 0.098, 0.133], [0.050, 0.092, 0.127], [0.055, 0.097, 0.129]]
                         temp20 = [[0.042, 0.067, 0.083], [0.033, 0.054, 0.069], [0.034, 0.056, 0.068]]
                         temp60 = [[0.013, 0.031, 0.042], [0.000, 0.010, 0.019], [0.000, 0.006, 0.012]]
+                        if self.width == 20:
+                            return temp20[resistid][condid] * self.geom_value
+                        match closer2(0, 60, self.width):
+                            case 0:
+                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width) * self.geom_value
+                            case 60:
+                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width) * self.geom_value
+            case 1:
+                conducts = [0.2, 0.6, 1.8]
+                resists = [1.5, 3.0, 6.0]
+                condid = closerList(conducts, self.cond)
+                resistid = closerList(resists, self.resist)
+                match self.paramtype:
+                    case 0:
+                        temp00 = [[0.054, 0.098, 0.133], [0.050, 0.092, 0.127], [0.055, 0.097, 0.129]]
+                        temp20 = [[0.042, 0.067, 0.083], [0.033, 0.054, 0.069], [0.034, 0.056, 0.068]]
+                        temp60 = [[0.013, 0.031, 0.042], [0.000, 0.010, 0.019], [0.000, 0.006, 0.012]]
+                        if self.width == 20:
+                            return temp20[resistid][condid] * self.geom_value
+                        match closer2(0, 60, self.width):
+                            case 0:
+                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width) * self.geom_value
+                            case 60:
+                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width) * self.geom_value
+                    case 1:
+                        temp00 = [[0.156, 0.157, 0.183], [0.119, 0.119, 0.123], [0.109, 0.112, 0.114]]
+                        temp20 = [[0.000, 0.000, 0.000], [0.092, 0.092, 0.094], [0.072, 0.072, 0.072]]
+                        temp60 = [[0.000, 0.000, 0.000], [0.054, 0.052, 0.054], [0.012, 0.012, 0.012]]
+                        if self.width == 20:
+                            return temp20[resistid][condid] * self.geom_value
+                        match closer2(0, 60, self.width):
+                            case 0:
+                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width) * self.geom_value
+                            case 60:
+                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width) * self.geom_value
+                    case 2:
+                        temp00 = [[0.106, 0.319, 0.696], [0.121, 0.346, 0.738], [0.134, 0.366, 0.764]]
+                        temp20 = [[0.063, 0.135, 0.196], [0.069, 0.140, 0.196], [0.078, 0.147, 0.202]]
+                        temp60 = [[0.017, 0.054, 0.081], [0.015, 0.046, 0.067], [0.018, 0.047, 0.064]]
+                        if self.width == 20:
+                            return temp20[resistid][condid] * self.geom_value
+                        match closer2(0, 60, self.width):
+                            case 0:
+                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width) * self.geom_value
+                            case 60:
+                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width) * self.geom_value
+            case 2:
+                return self.value * self.geom_value
+
 
 
 
