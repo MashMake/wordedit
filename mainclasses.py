@@ -298,7 +298,43 @@ class Assembly5(object):
             case 2:
                 return self.value * self.geom_value
 
+class Assembly5(object):
+    def __init__(self, insulation_resistance, insulation_width, base_conductivity, geometrical_value):
+        self.name = 'Примыкание к цокольному ограждению'
+        self.type = 1
 
+        self.resist = insulation_resistance
+        self.width = insulation_width
+        self.cond = base_conductivity
+        self.geom_value = geometrical_value
 
+    def HeatLoss(self):
+        conducts = [0.2, 0.6, 1.8]
+        resists = [1.5, 3.0, 6.0]
+        widths = [1.88, 3.13, 5.0, 7.81]
+        condid = closerList(conducts, self.cond)
+        resistid = closerList(resists, self.resist)
+        widthid = closerList(widths, self.width)
+        temp188 = [[0.156, 0.364, 0.553], [0.175, 0.400, 0.710], [0.194, 0.424, 0.735]]
+        temp313 = [[0.135, 0.333, 0.635], [0.152, 0.363, 0.679], [0.168, 0.385, 0.703]]
+        temp500 = [[0.115, 0.293, 0.593], [0.128, 0.319, 0.629], [0.141, 0.337, 0.650]]
+        temp781 = [[0.099, 0.251, 0.538], [0.107, 0.271, 0.566], [0.116, 0.284, 0.581]]
 
+        match widthid:
+            case 0:
+                return interpolation(1.88, 3.13, temp188[resistid][condid], temp313[resistid][condid], self.width) * self.geom_value
+            case 1:
+                if closer2(1.88, 5.0, self.width) == 1.88:
+                    return interpolation(1.88, 3.13, temp188[resistid][condid], temp313[resistid][condid], self.width) * self.geom_value
+                else:
+                    return interpolation(3.13, 5.00, temp313[resistid][condid], temp500[resistid][condid], self.width) * self.geom_value
+            case 2:
+                if closer2(3.13, 7.81, self.width) == 3.13:
+                    return interpolation(3.13, 5.0, temp313[resistid][condid], temp500[resistid][condid], self.width) * self.geom_value
+                else:
+                    return interpolation(5.0, 7.81, temp500[resistid][condid], temp500[resistid][condid], self.width) * self.geom_value
+            case 3:
+                return interpolation(5.0, 7.81, temp500[resistid][condid], temp500[resistid][condid], self.width) * self.geom_value
+
+        
 
