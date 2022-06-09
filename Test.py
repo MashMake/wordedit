@@ -1,9 +1,10 @@
 import mainclasses as mc
 
-wall = mc.Wall(1.2, 100, None)
+# f = [1, 5, 6]
+# a, b, c = -2, 8, 5
 
-# assemblies = [1.2, 4.57, 8.34]
-# wall.AddAssemblies(assemblies)
-# print(wall.assemblies)
-# print(wall.actualSquare)
+# print(f[mc.closerList(f, a)], f[mc.closerList(f, b)], f[mc.closerList(f, c)])
 
+# ass = mc.Assembly3(4, 180, 1.8, 0, None, 1)
+# print(ass.HeatLoss(0))
+print(mc.interpolation(160, 210, 0.592, 0.719, 180))
