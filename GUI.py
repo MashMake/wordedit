@@ -4,6 +4,8 @@ from os import *
 from tkinter import filedialog
 
 window = Tk()
-window.geometry('400x250')
+window.geometry('1620x1080')
+
+
 
 window.mainloop()

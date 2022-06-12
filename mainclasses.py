@@ -332,9 +332,9 @@ class Assembly5(object):
                 if closer2(3.13, 7.81, self.width) == 3.13:
                     return interpolation(3.13, 5.0, temp313[resistid][condid], temp500[resistid][condid], self.width) * self.geom_value
                 else:
-                    return interpolation(5.0, 7.81, temp500[resistid][condid], temp500[resistid][condid], self.width) * self.geom_value
+                    return interpolation(5.0, 7.81, temp500[resistid][condid], temp781[resistid][condid], self.width) * self.geom_value
             case 3:
-                return interpolation(5.0, 7.81, temp500[resistid][condid], temp500[resistid][condid], self.width) * self.geom_value
+                return interpolation(5.0, 7.81, temp500[resistid][condid], temp781[resistid][condid], self.width) * self.geom_value
 
         
 
