@@ -7,4 +7,5 @@ import mainclasses as mc
 
 # ass = mc.Assembly3(4, 180, 1.8, 0, None, 1)
 # print(ass.HeatLoss(0))
-print(mc.interpolation(160, 210, 0.592, 0.719, 180))
+walls = [mc.Wall(1.5, 500, 0) for i in range(4)]
+print(walls)
