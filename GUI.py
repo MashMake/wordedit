@@ -9,6 +9,7 @@ window.geometry('1620x1080')
 window.title('Biba')
 
 building = LabelFrame(window, text='Здание')
+building.pack(expand=1, fill='both')
 
 wallsamount = IntVar()
 wallsamount.set(4)
