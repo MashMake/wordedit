@@ -58,7 +58,8 @@ class Wall(object):
     def SuppositiveConductivity(self, insideratio, outsideratio): return 1 / insideratio + self.LayersResistSum() + 1 / outsideratio
 
 class Layer(object):
-    def __init__(self, width, conductivity):
+    def __init__(self, name, width, conductivity):
+        self.name = name
         self.width = width
         self.conductivity = conductivity
         self.thermalResistance = self.width / self.conductivity
