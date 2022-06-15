@@ -4,10 +4,13 @@ from os import *
 from tkinter import filedialog
 from tkinter import ttk
 from tkinter.ttk import Checkbutton
+from tkinter.ttk import Combobox
+
+
 wa = 3
 
 window = Tk()
-window.geometry('600x650')
+window.geometry('750x550')
 window.title('Walls configure')
 
 tab_control = ttk.Notebook(window)
@@ -21,35 +24,32 @@ for i in range(wa):
     walltabs.append(ttk.Frame(tab_control))
     tab_control.add(walltabs[i], text='Стена {}'.format(i+1))
 
-wlb = []
+
 slb = []
 tlb = []
 for i in range(wa):
-    wlb.append(Label(walltabs[i], text='Ширина'))
-    wlb[i].grid(column=0, row=0)
     slb.append(Label(walltabs[i], text='Площадь'))
     slb[i].grid(column=0, row=1)
     tlb.append(Label(walltabs[i], text='Тип'))
     tlb[i].grid(column=0, row=2)
 
-wen = []
+
 sen = []
 ten = []
 for i in range(wa):
-    wen.append(Entry(walltabs[i], width=10))
-    wen[i].grid(column=1, row=0)
     sen.append(Entry(walltabs[i], width=10))
     sen[i].grid(column=1, row=1)
-    ten.append(Entry(walltabs[i], width=10))
+    ten.append(Combobox(walltabs[i], width=30))
+    ten[i]['values'] = ('Трехслойные стены', 'СФТК', 'Системы наружной теплоизоляции')
     ten[i].grid(column=1, row=2)
 
-le = []
-ll = []
-for i in range(wa):
-    ll.append(Label(walltabs[i], text='Слои (толщина теплопроводность)'))
-    ll[i].grid(column=0, row=3)
-    le.append(Entry(walltabs[i], width=10))
-    le[i].grid(column=1, row=3)
+# le = []
+# ll = []
+# for i in range(wa):
+#     ll.append(Label(walltabs[i], text='Слои (толщина теплопроводность)'))
+#     ll[i].grid(column=0, row=3)
+#     le.append(Entry(walltabs[i], width=10))
+#     le[i].grid(column=1, row=3)
 
 a0 = []
 a1 = []
