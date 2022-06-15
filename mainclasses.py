@@ -1,4 +1,3 @@
-from inspect import Parameter
 import math
 
 def closer2(value1, value2, parameter):
@@ -39,12 +38,12 @@ class Wall(object):
         self.typeid = type
         self.assemblies = []
         self.layers = []
-        self.assemblieswidth = 0
+        self.assembliessquare = 0
     
-    def AddAssemblies(self, assemblies):
+    def AddAssemblies(self, assemblies, assembliessquare):
         self.assemblies = assemblies
-        self.assemblieswidth = sum(assemblies)
-        self.actualSquare = self.actualSquare - self.assemblieswidth
+        self.assembliessquare = assembliessquare
+        self.actualSquare = self.actualSquare - self.assembliessquare
     
     def A(self, length): return length / self.actualSquare
     
@@ -56,7 +55,7 @@ class Wall(object):
         for elem in self.layers:
             sum += elem.thermalResistance
         return sum
-    def SuppositiveConductivity(self, insideratio, outsideratio): return 1 / insideratio + self.LayersResistSum + 1 / outsideratio
+    def SuppositiveConductivity(self, insideratio, outsideratio): return 1 / insideratio + self.LayersResistSum() + 1 / outsideratio
 
 class Layer(object):
     def __init__(self, width, conductivity):
@@ -64,7 +63,17 @@ class Layer(object):
         self.conductivity = conductivity
         self.thermalResistance = self.width / self.conductivity
 
-class Assembly0(object):
+class Assembly(object):
+    def __init__(self, amount):
+        self.name = 'Unidentified'
+        self.type = -1
+        
+        self.amount = amount
+    
+    def HeatLoss(self):
+        return -1
+
+class Assembly0(Assembly):
     def __init__(self, value, amount):
         self.name = 'Гибкие связи'
         self.type = 0
@@ -74,7 +83,7 @@ class Assembly0(object):
 
         def HeatLoss(self): return self.value * self.amount
 
-class Assembly1(object):
+class Assembly1(Assembly):
     def __init__(self, length, amount):
         self.name = 'Тарельчатый анкер'
         self.type = 0
@@ -93,7 +102,7 @@ class Assembly1(object):
         else: x = 0.001
         return x * self.amount
 
-class Assembly2(object):
+class Assembly2(Assembly):
     def __init__(self, value, amount):
         self.name = 'Кронштейн'
         self.type = 0
@@ -103,7 +112,7 @@ class Assembly2(object):
 
         def HeatLoss(self): return self.value * self.amount
 
-class Assembly3(object):
+class Assembly3(Assembly):
     def __init__(self, insulation_resistance, plate_width, base_conductivity, assembly_type, parameter, geometrical_value):
         self.name = 'Сопряжение с перекрытиями и балконами'
         self.type = 1
@@ -208,18 +217,8 @@ class Assembly3(object):
                         temp210 = [[0.192, 0.147, 0.134], [0.166, 0.152, 0.156], [0.182, 0.184, 0.193]]
                         return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
 
-class Assembly4(object):
-    def __init__(self, value, amount):
-        self.name = 'Стыки панелей'
-        self.type = 1
-
-        self.value = value
-        self.amount = amount
-
-        def HeatLoss(self): return self.value * self.amount
-
-class Assembly5(object):
-    def __init__(self, insulation_resistance, plate_width, base_conductivity, assembly_type, geometrical_value, value):
+class Assembly4(Assembly):
+    def __init__(self, insulation_resistance, plate_width, base_conductivity, assembly_type, geometrical_value):
         self.name = 'Стыки с оконными блоками'
         self.type = 1
 
@@ -228,7 +227,6 @@ class Assembly5(object):
         self.cond = base_conductivity
         self.paramtype = assembly_type
         self.geom_value = geometrical_value
-        self.value = value
 
     def HeatLoss(self, walltype):
         match walltype:
@@ -298,7 +296,7 @@ class Assembly5(object):
             case 2:
                 return self.value * self.geom_value
 
-class Assembly5(object):
+class Assembly5(Assembly):
     def __init__(self, insulation_resistance, insulation_width, base_conductivity, geometrical_value):
         self.name = 'Примыкание к цокольному ограждению'
         self.type = 1
