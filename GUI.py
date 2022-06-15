@@ -227,11 +227,13 @@ for i in range(wa):
     a5ven.append(Entry(walltabs[i], width=10))
     a5ven[i].grid(column=3, row=20)
 
-
+#покрытия перекрытия: термическое из слоёв, ПРИВЕДЁННОЕ - термическое * коэф.одн, коэф.одн. вручную
+#окна и двери только площадь и приведённое сопротивление вручную
+#
 
 
 def generate():
-    for elem in 
+    window.quit()
 
 AcceptButton = Button(maintab, text='Расчитать', command=generate)
 AcceptButton.grid(column=0, row=0)
