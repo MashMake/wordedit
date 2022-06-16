@@ -385,6 +385,7 @@ def generate():
         elif ten[i] == 'СФТК': type = 1
         elif ten[i] == 'Системы наружной теплоизоляции': type = 2
         walls.append(mc.Wall(float(sen[i].get().replace(',', '.')), type))
+        walls[i].AddLayers(layers)
 
 
 
