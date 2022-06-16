@@ -343,7 +343,10 @@ wdren.grid(column=1, row=10)
 def generate():
     print('processing')
     doc = Document('0.docx')
-    
+    layers_table = doc.tables[0]
+    if l1c.get():
+        
+
 
 
 
