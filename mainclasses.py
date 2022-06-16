@@ -44,7 +44,7 @@ class Wall(object):
         self.assembliessquare = assembliessquare
         self.actualSquare = self.actualSquare - self.assembliessquare
     
-    def A(self, length): return length / self.actualSquare
+    def A(self): return self.actualSquare / self.fullSquare
     
     def AddLayers(self, newlayers): self.layers += newlayers
     def AddLayer(self, newlayer): self.layers.append(newlayer)

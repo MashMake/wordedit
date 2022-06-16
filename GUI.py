@@ -1,5 +1,5 @@
-from msilib.schema import CheckBox
 import mainclasses as mc
+import math
 from tkinter import *
 from os import *
 from tkinter import filedialog
@@ -27,19 +27,23 @@ for i in range(wa):
     walltabs.append(ttk.Frame(tab_control))
     tab_control.add(walltabs[i], text='Стена {}'.format(i+1))
 
-
+vlb = []
 slb = []
 tlb = []
 for i in range(wa):
+    vlb.append(Label(walltabs[i], text='Прив.Площадь'))
+    vlb[i].grid(column=0, row=0)
     slb.append(Label(walltabs[i], text='Площадь'))
     slb[i].grid(column=0, row=1)
     tlb.append(Label(walltabs[i], text='Тип'))
     tlb[i].grid(column=0, row=2)
 
-
+ven = []
 sen = []
 ten = []
 for i in range(wa):
+    ven.append(Entry(walltabs[i], width=10))
+    ven[i].grid(column=1, row=0)
     sen.append(Entry(walltabs[i], width=10))
     sen[i].grid(column=1, row=1)
     ten.append(Combobox(walltabs[i], width=30))
@@ -424,11 +428,11 @@ def generate():
             a5v = float(a5ven[i].get().replace(',', '.'))
             walls[i].assemblies.append(mc.Assembly5(a5r, a5w, a5C, a5v))
             
-    count = 1
+    count = 0
     for i in range(wa):
         count += len(walls[i].assemblies)
     
-    walls_table = doc.add_table(rows=count + 1, cols=4, style='Table Grid')
+    walls_table = doc.add_table(rows=count + 1 + wa, cols=4, style='Table Grid')
     
     cell = walls_table.cell(0, 0)
     cell.text = 'Элемент конструкции'
@@ -438,6 +442,18 @@ def generate():
     cell.text = 'Удельные потери теплоты'
     cell = walls_table.cell(0, 3)
     cell.text = 'Удельный поток теплоты, обусловленный элементом'
+
+    for i in range(wa):
+        cell1 = walls_table.cell(i + 1, 0)
+        cell1.text = 'Плоский элемент {}'.format(i + 1)
+        walls[i].actualSquare = float(ven[i].get().replace(',', '.'))
+        cell2 = walls_table.cell(i + 1, 1)
+        cell2.text = str(round(walls[i].A(), 3))
+        cell3 = walls_table.cell(i + 1, 2)
+        cell3.text = str(round(1 / walls[i].SuppositiveConductivity(12, 8.7), 3))
+        cell4 = walls_table.cell(i + 1, 3)
+        cell4.text = str(round(float(cell2.text) * float(cell3.text), 3))
+    
 
 
 
