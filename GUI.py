@@ -424,11 +424,20 @@ def generate():
             a5v = float(a5ven[i].get().replace(',', '.'))
             walls[i].assemblies.append(mc.Assembly5(a5r, a5w, a5C, a5v))
             
-    count = 0
+    count = 1
     for i in range(wa):
         count += len(walls[i].assemblies)
     
+    walls_table = doc.add_table(rows=count + 1, cols=4, style='Table Grid')
     
+    cell = walls_table.cell(0, 0)
+    cell.text = 'Элемент конструкции'
+    cell = walls_table.cell(0, 1)
+    cell.text = 'Удельный геометрический показатель'
+    cell = walls_table.cell(0, 2)
+    cell.text = 'Удельные потери теплоты'
+    cell = walls_table.cell(0, 3)
+    cell.text = 'Удельный поток теплоты, обусловленный элементом'
 
 
 
