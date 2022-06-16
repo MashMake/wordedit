@@ -339,12 +339,22 @@ wdren = Entry(maintab, width=10)
 wdren.grid(column=1, row=10)
 
 
-
+layers = []
 def generate():
     print('processing')
+    global layers
     doc = Document('0.docx')
     layers_table = doc.tables[0]
     if l1c.get():
+        layers.append(mc.Layer(l1nen.get(), float(l1den.get()), float(l1cen.get())))
+        cell = layers_table.cell(1, 1)
+        cell.text = l1nen.get()
+    
+
+
+
+
+    doc.save('Test.docx')
         
 
 
