@@ -34,7 +34,7 @@ class Wall(object):
     def __init__(self, square, type):
         self.fullSquare = square
         self.actualSquare = square
-        self.typeid = type
+        self.type = type
         self.assemblies = []
         self.layers = []
         self.assembliessquare = 0
@@ -70,28 +70,28 @@ class Assembly(object):
         
         self.amount = amount
     
-    def HeatLoss(self):
+    def HeatLoss(self, walltype):
         return -1
 
-class Assembly0(Assembly):
+class Assembly0(object):
     def __init__(self, value, amount):
         self.name = 'Гибкие связи'
         self.type = 0
 
         self.value = value
-        self.amount = amount
+        self.geom_value = amount
 
-        def HeatLoss(self): return self.value * self.amount
+        def HeatLoss(self, walltype): return self.amount
 
-class Assembly1(Assembly):
+class Assembly1(object):
     def __init__(self, length, amount):
         self.name = 'Тарельчатый анкер'
         self.type = 0
 
         self.length = length
-        self.amount = amount
+        self.geom_value = amount
 
-    def HeatLoss(self):
+    def HeatLoss(self, walltype):
         if self.length <= 2: x = 0.006
         elif self.length <= 5: x = 0.005
         elif self.length <= 11: x = 0.004
@@ -102,15 +102,15 @@ class Assembly1(Assembly):
         else: x = 0.001
         return x
 
-class Assembly2(Assembly):
+class Assembly2(object):
     def __init__(self, value, amount):
         self.name = 'Кронштейн'
         self.type = 0
         
         self.value = value
-        self.amount = amount
+        self.geom_value = amount
 
-        def HeatLoss(self): return self.value
+        def HeatLoss(self, walltype): return self.amount
 
 class Assembly3(Assembly):
     def __init__(self, insulation_resistance, plate_width, base_conductivity, assembly_type, parameter, geometrical_value):

@@ -454,7 +454,23 @@ def generate():
         cell4 = walls_table.cell(i + 1, 3)
         cell4.text = str(round(float(cell2.text) * float(cell3.text), 3))
     
+    f = wa + 1
+    for j in range(wa):
+        for i in range(len(walls[j].assemblies)):
+            cell1 = walls_table.cell(f, 0)
+            if walls[j].assemblies[i].type:
+                cell1.text = 'Линейный элемент {}'.format(i + 1)
+            else:
+                cell1.text = 'Точечный элемент {}'.format(i + 1)
+            walls[i].actualSquare = float(ven[i].get().replace(',', '.'))
+            cell2 = walls_table.cell(f, 1)
+            cell2.text = str(round(walls[j].assemblies[i].geom_value, 3))
+            cell3 = walls_table.cell(f, 2)
+            cell3.text = str(round(walls[j].assemblies[i].HeatLoss(walls[j].type), 3))
+            cell4 = walls_table.cell(f, 3)
+            cell4.text = str(round(float(cell2.text) * float(cell3.text), 3))
 
+            f += 1
 
 
 
