@@ -387,6 +387,24 @@ def generate():
         walls.append(mc.Wall(float(sen[i].get().replace(',', '.')), type))
         walls[i].AddLayers(layers)
 
+    for i in range(wa):
+        if a0c[i].get(): walls[i].assemblies.append(mc.Assembly0(float(a0ven[i].get().replace(',', '.')), float(a0aen[i].get().replace(',', '.'))))
+        if a1c[i].get(): walls[i].assemblies.append(mc.Assembly1(float(a1ven[i].get().replace(',', '.')), float(a1aen[i].get().replace(',', '.'))))
+        if a2c[i].get(): walls[i].assemblies.append(mc.Assembly2(float(a2ven[i].get().replace(',', '.')), float(a2aen[i].get().replace(',', '.'))))
+        if a3c[i].get():
+            a3i = float(a3ien[i].get().replace(',', '.'))
+            a3w = float(a3wen[i].get().replace(',', '.'))
+            a3C = float(a3cen[i].get().replace(',', '.'))
+            a3t = 0
+            if a3ten[i].get() == 'нет': a3t = 0
+            elif a3ten[i].get() == 'перфорация': a3t = 1
+            elif a3ten[i].get() == 'НТЭ': a3t = 2
+            a3p = 1
+            if a3pen[i].get() == '1/1': a3p = 1
+            elif a3pen[i].get() == '1/3': a3p = 3
+            elif a3pen[i].get() == '1/5': a3p = 5
+            a3v = float(a3ven[i].get().replace(',', '.'))
+            
 
 
 
