@@ -424,6 +424,10 @@ def generate():
             a5v = float(a5ven[i].get().replace(',', '.'))
             walls[i].assemblies.append(mc.Assembly5(a5r, a5w, a5C, a5v))
             
+    count = 0
+    for i in range(wa):
+        count += len(walls[i].assemblies)
+    
     
 
 

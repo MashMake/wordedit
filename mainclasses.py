@@ -100,7 +100,7 @@ class Assembly1(Assembly):
         elif self.length <= 40: x = 0.002
         elif self.length <= 70: x = 0.0015
         else: x = 0.001
-        return x * self.amount
+        return x
 
 class Assembly2(Assembly):
     def __init__(self, value, amount):
@@ -110,7 +110,7 @@ class Assembly2(Assembly):
         self.value = value
         self.amount = amount
 
-        def HeatLoss(self): return self.value * self.amount
+        def HeatLoss(self): return self.value
 
 class Assembly3(Assembly):
     def __init__(self, insulation_resistance, plate_width, base_conductivity, assembly_type, parameter, geometrical_value):
@@ -135,31 +135,31 @@ class Assembly3(Assembly):
                     case 0:
                         temp160 = [[0.488, 0.500, 0.577], [0.477, 0.515, 0.592], [0.408, 0.444, 0.494]]
                         temp210 = [[0.606, 0.617, 0.698], [0.594, 0.633, 0.719], [0.592, 0.522, 0.610]]
-                        return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                        return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                     case 1:
                         match self.parameter:
                             case 1:
                                 temp160 = [[0.300, 0.298, 0.346], [0.304, 0.315, 0.352], [0.283, 0.298, 0.323]]
                                 temp210 = [[0.379, 0.373, 0.421], [0.385, 0.396, 0.435], [0.360, 0.377, 0.406]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                             case 3:
                                 temp160 = [[0.188, 0.179, 0.208], [0.196, 0.196, 0.215], [0.198, 0.202, 0.215]]
                                 temp210 = [[0.238, 0.225, 0.252], [0.252, 0.250, 0.269], [0.252, 0.259, 0.273]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                             case 5:
                                 temp160 = [[0.142, 0.131, 0.152], [0.152, 0.148, 0.160], [0.160, 0.161, 0.169]]
                                 temp210 = [[0.179, 0.163, 0.181], [0.194, 0.188, 0.202], [0.204, 0.206, 0.215]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                     case 2:
                         match self.parameter:
                             case 1:
                                 temp160 = [[0.126, 0.081, 0.063], [0.115, 0.098, 0.094], [0.131, 0.133, 0.137]]
                                 temp210 = [[0.126, 0.072, 0.047], [0.120, 0.098, 0.093], [0.144, 0.144, 0.147]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                             case 3:
                                 temp160 = [[0.086, 0.038, 0.016], [0.076, 0.055, 0.049], [0.095, 0.092, 0.097]]
                                 temp210 = [[0.086, 0.028, 0.001], [0.076, 0.055, 0.050], [0.106, 0.098, 0.103]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
             case 1:
                 conducts = [0.2, 0.6, 1.8]
                 resists = [1.5, 3.0, 6.0]
@@ -169,25 +169,25 @@ class Assembly3(Assembly):
                     case 0:
                         temp160 = [[0.583, 0.660, 0.838], [0.550, 0.638, 0.781], [0.472, 0.536, 0.626]]
                         temp210 = [[0.704, 0.777, 0.958], [0.669, 0.758, 0.915], [0.580, 0.650, 0.751]]
-                        return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                        return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                     case 1:
                         match self.parameter:
                             case 1:
                                 temp160 = [[0.400, 0.413, 0.477], [0.346, 0.371, 0.419], [0.311, 0.338, 0.374]]
                                 temp210 = [[0.483, 0.492, 0.556], [0.429, 0.456, 0.510], [0.393, 0.421, 0.466]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                             case 3:
                                 temp160 = [[0.279, 0.265, 0.285], [0.225, 0.227, 0.244], [0.209, 0.219, 0.237]]
                                 temp210 = [[0.335, 0.315, 0.333], [0.281, 0.283, 0.302], [0.268, 0.279, 0.297]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                             case 5:
                                 temp160 = [[0.227, 0.202, 0.210], [0.173, 0.171, 0.179], [0.168, 0.171, 0.183]]
                                 temp210 = [[0.269, 0.240, 0.244], [0.219, 0.213, 0.223], [0.213, 0.219, 0.230]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                     case 2:
                         temp160 = [[0.191, 0.156, 0.151], [0.158, 0.149, 0.155], [0.168, 0.173, 0.182]]
                         temp210 = [[0.192, 0.147, 0.134], [0.166, 0.152, 0.156], [0.182, 0.184, 0.193]]
-                        return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                        return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
             case 2:
                 conducts = [0.2, 0.6, 1.8]
                 resists = [1.5, 3.0, 6.0]
@@ -197,25 +197,25 @@ class Assembly3(Assembly):
                     case 0:
                         temp160 = [[0.583, 0.660, 0.838], [0.550, 0.638, 0.781], [0.472, 0.536, 0.626]]
                         temp210 = [[0.704, 0.777, 0.958], [0.669, 0.758, 0.915], [0.580, 0.650, 0.751]]
-                        return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                        return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                     case 1:
                         match self.parameter:
                             case 1:
                                 temp160 = [[0.400, 0.413, 0.477], [0.346, 0.371, 0.419], [0.311, 0.338, 0.374]]
                                 temp210 = [[0.483, 0.492, 0.556], [0.429, 0.456, 0.510], [0.393, 0.421, 0.466]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                             case 3:
                                 temp160 = [[0.279, 0.265, 0.285], [0.225, 0.227, 0.244], [0.209, 0.219, 0.237]]
                                 temp210 = [[0.335, 0.315, 0.333], [0.281, 0.283, 0.302], [0.268, 0.279, 0.297]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                             case 5:
                                 temp160 = [[0.227, 0.202, 0.210], [0.173, 0.171, 0.179], [0.168, 0.171, 0.183]]
                                 temp210 = [[0.269, 0.240, 0.244], [0.219, 0.213, 0.223], [0.213, 0.219, 0.230]]
-                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                                return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
                     case 2:
                         temp160 = [[0.191, 0.156, 0.151], [0.158, 0.149, 0.155], [0.168, 0.173, 0.182]]
                         temp210 = [[0.192, 0.147, 0.134], [0.166, 0.152, 0.156], [0.182, 0.184, 0.193]]
-                        return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width) * self.geom_value
+                        return interpolation(160, 210, temp160[resistid][condid], temp210[resistid][condid], self.width)
 
 class Assembly4(Assembly):
     def __init__(self, insulation_resistance, plate_width, base_conductivity, assembly_type, geometrical_value):
@@ -251,9 +251,9 @@ class Assembly4(Assembly):
                             return temp20[resistid][condid] * self.geom_value
                         match closer2(0, 60, self.width):
                             case 0:
-                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width) * self.geom_value
+                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width)
                             case 60:
-                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width) * self.geom_value
+                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width)
             case 1:
                 conducts = [0.2, 0.6, 1.8]
                 resists = [1.5, 3.0, 6.0]
@@ -268,9 +268,9 @@ class Assembly4(Assembly):
                             return temp20[resistid][condid] * self.geom_value
                         match closer2(0, 60, self.width):
                             case 0:
-                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width) * self.geom_value
+                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width)
                             case 60:
-                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width) * self.geom_value
+                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width)
                     case 1:
                         temp00 = [[0.156, 0.157, 0.183], [0.119, 0.119, 0.123], [0.109, 0.112, 0.114]]
                         temp20 = [[0.000, 0.000, 0.000], [0.092, 0.092, 0.094], [0.072, 0.072, 0.072]]
@@ -279,9 +279,9 @@ class Assembly4(Assembly):
                             return temp20[resistid][condid] * self.geom_value
                         match closer2(0, 60, self.width):
                             case 0:
-                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width) * self.geom_value
+                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width)
                             case 60:
-                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width) * self.geom_value
+                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width)
                     case 2:
                         temp00 = [[0.106, 0.319, 0.696], [0.121, 0.346, 0.738], [0.134, 0.366, 0.764]]
                         temp20 = [[0.063, 0.135, 0.196], [0.069, 0.140, 0.196], [0.078, 0.147, 0.202]]
@@ -290,9 +290,9 @@ class Assembly4(Assembly):
                             return temp20[resistid][condid] * self.geom_value
                         match closer2(0, 60, self.width):
                             case 0:
-                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width) * self.geom_value
+                                return interpolation(0, 20, temp00[resistid][condid], temp20[resistid][condid], self.width)
                             case 60:
-                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width) * self.geom_value
+                                return interpolation(20, 60, temp20[resistid][condid], temp60[resistid][condid], self.width)
             case 2:
                 return self.value * self.geom_value
 
@@ -320,19 +320,19 @@ class Assembly5(Assembly):
 
         match widthid:
             case 0:
-                return interpolation(1.88, 3.13, temp188[resistid][condid], temp313[resistid][condid], self.width) * self.geom_value
+                return interpolation(1.88, 3.13, temp188[resistid][condid], temp313[resistid][condid], self.width)
             case 1:
                 if closer2(1.88, 5.0, self.width) == 1.88:
-                    return interpolation(1.88, 3.13, temp188[resistid][condid], temp313[resistid][condid], self.width) * self.geom_value
+                    return interpolation(1.88, 3.13, temp188[resistid][condid], temp313[resistid][condid], self.width)
                 else:
-                    return interpolation(3.13, 5.00, temp313[resistid][condid], temp500[resistid][condid], self.width) * self.geom_value
+                    return interpolation(3.13, 5.00, temp313[resistid][condid], temp500[resistid][condid], self.width)
             case 2:
                 if closer2(3.13, 7.81, self.width) == 3.13:
-                    return interpolation(3.13, 5.0, temp313[resistid][condid], temp500[resistid][condid], self.width) * self.geom_value
+                    return interpolation(3.13, 5.0, temp313[resistid][condid], temp500[resistid][condid], self.width)
                 else:
-                    return interpolation(5.0, 7.81, temp500[resistid][condid], temp781[resistid][condid], self.width) * self.geom_value
+                    return interpolation(5.0, 7.81, temp500[resistid][condid], temp781[resistid][condid], self.width)
             case 3:
-                return interpolation(5.0, 7.81, temp500[resistid][condid], temp781[resistid][condid], self.width) * self.geom_value
+                return interpolation(5.0, 7.81, temp500[resistid][condid], temp781[resistid][condid], self.width)
 
         
 
