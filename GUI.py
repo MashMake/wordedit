@@ -404,7 +404,27 @@ def generate():
             elif a3pen[i].get() == '1/3': a3p = 3
             elif a3pen[i].get() == '1/5': a3p = 5
             a3v = float(a3ven[i].get().replace(',', '.'))
+            walls[i].assemblies.append(mc.Assembly3(a3i, a3w, a3C, a3t, a3p, a3v))
+        
+        if a4c[i].get():
+            a4i = float(a4ien[i].get().replace(',', '.'))
+            a4w = float(a4wen[i].get().replace(',', '.'))
+            a4C = float(a4cen[i].get().replace(',', '.'))
+            a4t = 0
+            if a4ten[i].get() == 'нет': a3t = 0
+            elif a4ten[i].get() == 'перфорация': a3t = 1
+            elif a4ten[i].get() == 'НТЭ': a3t = 2
+            a4v = float(a4ven[i].get().replace(',', '.'))
+            walls[i].assemblies.append(mc.Assembly4(a4i, a4w, a4C, a4t))
+
+        if a5c[i].get():
+            a5r = float(a5ren[i].get().replace(',', '.'))
+            a5w = float(a5wen[i].get().replace(',', '.'))
+            a5C = float(a5cen[i].get().replace(',', '.'))
+            a5v = float(a5ven[i].get().replace(',', '.'))
+            walls[i].assemblies.append(mc.Assembly5(a5r, a5w, a5C, a5v))
             
+    
 
 
 
