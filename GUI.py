@@ -346,7 +346,7 @@ def generate():
     doc = Document('0.docx')
     layers_table = doc.tables[0]
     if l1c.get():
-        layers.append(mc.Layer(l1nen.get(), float(l1den.get()), float(l1cen.get())))
+        layers.append(mc.Layer(l1nen.get(), float(l1den.get().replace(',', '.')), float(l1cen.get().replace(',', '.'))))
         cell = layers_table.cell(1, 1)
         cell.text = l1nen.get()
         cell = layers_table.cell(1, 2)
@@ -354,7 +354,7 @@ def generate():
         cell = layers_table.cell(1, 3)
         cell.text = l1cen.get()
     if l2c.get():
-        layers.append(mc.Layer(l2nen.get(), float(l2den.get()), float(l2cen.get())))
+        layers.append(mc.Layer(l2nen.get(), float(l2den.get().replace(',', '.')), float(l2cen.get().replace(',', '.'))))
         cell = layers_table.cell(2, 1)
         cell.text = l2nen.get()
         cell = layers_table.cell(2, 2)
@@ -362,7 +362,7 @@ def generate():
         cell = layers_table.cell(2, 3)
         cell.text = l2cen.get()
     if l3c.get():
-        layers.append(mc.Layer(l3nen.get(), float(l3den.get()), float(l3cen.get())))
+        layers.append(mc.Layer(l3nen.get(), float(l3den.get().replace(',', '.')), float(l3cen.get().replace(',', '.'))))
         cell = layers_table.cell(3, 1)
         cell.text = l3nen.get()
         cell = layers_table.cell(3, 2)
@@ -370,7 +370,7 @@ def generate():
         cell = layers_table.cell(3, 3)
         cell.text = l3cen.get()
     if l4c.get():
-        layers.append(mc.Layer(l4nen.get(), float(l4den.get()), float(l4cen.get())))
+        layers.append(mc.Layer(l4nen.get(), float(l4den.get().replace(',', '.')), float(l4cen.get().replace(',', '.'))))
         cell = layers_table.cell(4, 1)
         cell.text = l4nen.get()
         cell = layers_table.cell(4, 2)
