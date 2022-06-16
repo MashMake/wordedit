@@ -31,8 +31,7 @@ class Building(object):
         self.walls = walls
 
 class Wall(object):
-    def __init__(self, width, square, type):
-        self.width = width
+    def __init__(self, square, type):
         self.fullSquare = square
         self.actualSquare = square
         self.typeid = type

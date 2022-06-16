@@ -23,7 +23,6 @@ maintab = ttk.Frame(tab_control)
 tab_control.add(maintab, text='Здание')
 
 walltabs = []
-walls = [mc.Wall(1.5, 500, 0) for i in range(wa)]
 for i in range(wa):
     walltabs.append(ttk.Frame(tab_control))
     tab_control.add(walltabs[i], text='Стена {}'.format(i+1))
@@ -340,6 +339,7 @@ wdren.grid(column=1, row=10)
 
 
 layers = []
+walls = []
 def generate():
     print('processing')
     global layers
@@ -378,7 +378,13 @@ def generate():
         cell = layers_table.cell(4, 3)
         cell.text = l4cen.get()
     
-
+    global walls
+    for i in range(wa):
+        type = 0
+        if ten[i] == 'Трехслойные стены': type = 0
+        elif ten[i] == 'СФТК': type = 1
+        elif ten[i] == 'Системы наружной теплоизоляции': type = 2
+        walls.append(mc.Wall(float(sen[i].get().replace(',', '.')), type))
 
 
 
