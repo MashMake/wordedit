@@ -81,7 +81,9 @@ class Assembly0(object):
         self.value = value
         self.geom_value = amount
 
-        def HeatLoss(self, walltype): return self.amount
+        def HeatLoss(self, walltype):
+            self.wall = walltype
+            return self.amount
 
 class Assembly1(object):
     def __init__(self, length, amount):
@@ -92,6 +94,7 @@ class Assembly1(object):
         self.geom_value = amount
 
     def HeatLoss(self, walltype):
+        self.wall = walltype
         if self.length <= 2: x = 0.006
         elif self.length <= 5: x = 0.005
         elif self.length <= 11: x = 0.004
@@ -110,7 +113,9 @@ class Assembly2(object):
         self.value = value
         self.geom_value = amount
 
-        def HeatLoss(self, walltype): return self.amount
+        def HeatLoss(self, walltype):
+            self.wall = walltype
+            return self.amount
 
 class Assembly3(Assembly):
     def __init__(self, insulation_resistance, plate_width, base_conductivity, assembly_type, parameter, geometrical_value):
