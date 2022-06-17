@@ -432,7 +432,7 @@ def generate():
     for i in range(wa):
         count += len(walls[i].assemblies)
     
-    walls_table = doc.add_table(rows=count + 1 + wa, cols=4, style='Table Grid')
+    walls_table = doc.add_table(rows=count + 2 + wa, cols=4, style='Table Grid')
     
     cell = walls_table.cell(0, 0)
     cell.text = 'Элемент конструкции'
@@ -442,6 +442,8 @@ def generate():
     cell.text = 'Удельные потери теплоты'
     cell = walls_table.cell(0, 3)
     cell.text = 'Удельный поток теплоты, обусловленный элементом'
+
+    sum = 0
 
     for i in range(wa):
         cell1 = walls_table.cell(i + 1, 0)
@@ -453,6 +455,7 @@ def generate():
         cell3.text = str(round(1 / walls[i].SuppositiveConductivity(12, 8.7), 3))
         cell4 = walls_table.cell(i + 1, 3)
         cell4.text = str(round(float(cell2.text) * float(cell3.text), 3))
+        sum += round(float(cell2.text) * float(cell3.text), 3)
     
     f = wa + 1
     for j in range(wa):
@@ -469,10 +472,14 @@ def generate():
             cell3.text = str(round(walls[j].assemblies[i].HeatLoss(walls[j].type), 3))
             cell4 = walls_table.cell(f, 3)
             cell4.text = str(round(float(cell2.text) * float(cell3.text), 3))
+            sum += round(float(cell2.text) * float(cell3.text), 3)
 
             f += 1
 
-
+    cell = walls_table.cell(f + 1, 0)
+    cell.text = 'Итого'
+    cell = walls_table.cell(f + 1, 3)
+    cell.text = sum
 
 
 
